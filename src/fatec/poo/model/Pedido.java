@@ -1,6 +1,6 @@
 
 package fatec.poo.model;
-
+import java.util.ArrayList;
 /**
  *
  * @author gusta
@@ -13,6 +13,14 @@ public class Pedido {
     private String dataPagto;
     private boolean formaPagto;
     private boolean situacao;
+    
+    //obj da classe Cliente e Vendedor
+    //Como trata-se de só um objeto de cada tipo, não foi utilizado o array list
+    private Cliente cliente; //1
+    private Vendedor vendedor; //1
+    
+    //obj da classe ItemPedido
+    private ArrayList<ItemPedido> itensPedidos; //
 
     //Método Construtor tem como parametros numero e data de emissao
     public Pedido(String numero, String dataEmissao) {
@@ -55,9 +63,8 @@ public class Pedido {
     public boolean isSituacao() {
         return situacao;
     }
-    
-    
-    
+
+    //Get and Set 
     
     
     
