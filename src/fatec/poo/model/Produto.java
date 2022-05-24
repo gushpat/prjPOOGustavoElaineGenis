@@ -81,6 +81,11 @@ public class Produto {
     }
     
     
+    //subtrai estoque
+    public void subtraiEstoque(double d){
+       this.qtdeEstoque -= d;
+    }
+    
     
     
 }

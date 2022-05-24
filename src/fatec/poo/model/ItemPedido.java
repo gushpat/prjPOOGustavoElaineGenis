@@ -28,6 +28,11 @@ public class ItemPedido{
 
     public void setQtdeVendida(double qtdeVendida) {
         this.qtdeVendida = qtdeVendida;
+        
+        //A quantidade vendida do item deve ser subtraída da quantidade disponível em 
+        //estoque do objeto Produto que está ligado ao objeto ItemPedido
+        produto.subtraiEstoque(qtdeVendida);
+        
     }
 
     //get sequencia, quantidade Vendida
