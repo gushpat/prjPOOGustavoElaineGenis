@@ -13,8 +13,8 @@ public class Cliente extends Pessoa{
     private double limiteCred;
     private double limiteDisp;
     
-    //Assoc Bin
-    private ArrayList<Pedido> pedidos; //1..*
+    //Array de objetos da classe pedidos
+    private ArrayList<Pedido> pedidos; //multiplicidade 1..*
 
     //metodo construtor tem como parametros de entrada limite de credito e cpf + nome da classe pessoa
     public Cliente(double limiteCred, String cpf, String nome) {

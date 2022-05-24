@@ -15,8 +15,8 @@ public class Produto {
     private double preco;
     private double estoqueMinimo; 
     
-    //assoc bin
-    private ItemPedido itemPedido;
+    //objeto da classe itempedido
+    private ItemPedido itemPedido; //multiplicidade 1
     
     
     //metodo construtor tem como parametros de entrada codigo e descricao;

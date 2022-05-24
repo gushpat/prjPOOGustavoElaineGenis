@@ -11,8 +11,8 @@ public class Vendedor extends Pessoa{
     private double salarioBase;
     private double taxaComissao;
     
-    //Assoc Bin
-    private ArrayList<Pedido> pedidos; //0..*
+    //Array de objetos da classe pedidos
+    private ArrayList<Pedido> pedidos; // multiplicidade 0..*
 
     //metodo construtor tem como parametros de entrada salario base e cpf + nome da classe pessoa
     public Vendedor(double salarioBase, String cpf, String nome) {
@@ -23,7 +23,7 @@ public class Vendedor extends Pessoa{
         pedidos = new ArrayList<Pedido>();
     }
     
-    //set taxa de comissao e salario base
+    //get taxa de comissao e salario base
 
     public double getSalarioBase() {
         return salarioBase;
@@ -33,7 +33,7 @@ public class Vendedor extends Pessoa{
         return taxaComissao;
     }
 
-    //get taxa de comissao e salario base
+    //set taxa de comissao e salario base
     
     public void setSalarioBase(double salarioBase) {
         this.salarioBase = salarioBase;

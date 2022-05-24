@@ -19,8 +19,8 @@ public class Pedido {
     private Cliente cliente; //1
     private Vendedor vendedor; //1
     
-    //obj da classe ItemPedido
-    private ArrayList<ItemPedido> itensPedidos; //
+    //Array de objetos da classe ItemPedido
+    private ArrayList<ItemPedido> itensPedidos; //multiplicidade 1..*
 
     //Método Construtor tem como parametros numero e data de emissao
     public Pedido(String numero, String dataEmissao) {

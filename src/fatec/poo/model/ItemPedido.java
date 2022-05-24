@@ -11,10 +11,10 @@ public class ItemPedido{
     private int sequencia;
     private double qtdeVendida;
     
-    //assoc Bin
-    private Produto produto;
-    
-    private Pedido pedido;
+    //objeto da classe produto
+    private Produto produto; //multiplicidade 1
+    //objeto da classe pedido
+    private Pedido pedido; //multiplicidade 1
     
     //Metodo construtor
 
