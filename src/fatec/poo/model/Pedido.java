@@ -86,7 +86,7 @@ public class Pedido {
     }
     
     
-    //Get and Set ItensPedidos
+    //add ItensPedidos
 
     public void addItens(ItemPedido ip){
        itensPedidos.add(ip);

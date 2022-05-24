@@ -14,6 +14,8 @@ public class ItemPedido{
     //assoc Bin
     private Produto produto;
     
+    private Pedido pedido;
+    
     //Metodo construtor
 
     public ItemPedido(int sequencia, double qtdeVendida, Produto produto) {
@@ -43,10 +45,22 @@ public class ItemPedido{
     public double getQtdeVendida() {
         return qtdeVendida;
     }
-
+    
+   //get produto
     public Produto getProduto() {
         return produto;
     }
+    
+   //get pedido
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+    
+    
     
     
     
