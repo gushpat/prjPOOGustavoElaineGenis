@@ -14,7 +14,7 @@ public class Cliente extends Pessoa{
     private double limiteDisp;
     
     //Assoc Bin
-    private ArrayList<Pedido> pedidos;
+    private ArrayList<Pedido> pedidos; //1..*
 
     //metodo construtor tem como parametros de entrada limite de credito e cpf + nome da classe pessoa
     public Cliente(double limiteCred, String cpf, String nome) {
@@ -48,6 +48,12 @@ public class Cliente extends Pessoa{
     public void addPedidos(Pedido p){
        pedidos.add(p);
       
+    }
+    
+    //Funcao que subtrai o valor do limite disponivel
+    public void subtraiValorLimiteDisponivel(double d)
+    {
+      this.limiteDisp -= d;
     }
     
     

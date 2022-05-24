@@ -15,6 +15,9 @@ public class Produto {
     private double preco;
     private double estoqueMinimo; 
     
+    //assoc bin
+    private ItemPedido itemPedido;
+    
     
     //metodo construtor tem como parametros de entrada codigo e descricao;
 
@@ -65,6 +68,16 @@ public class Produto {
 
     public double getEstoqueMinimo() {
         return estoqueMinimo;
+    }
+    
+    //get and set item pedido
+
+    public ItemPedido getItemPedido() {
+        return itemPedido;
+    }
+
+    public void setItemPedido(ItemPedido itemPedido) {
+        this.itemPedido = itemPedido;
     }
     
     

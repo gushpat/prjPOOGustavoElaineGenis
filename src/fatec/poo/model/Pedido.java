@@ -26,6 +26,9 @@ public class Pedido {
     public Pedido(String numero, String dataEmissao) {
         this.numero = numero;
         this.dataEmissao = dataEmissao;
+        
+        //inicializa array list pedidos
+        itensPedidos = new ArrayList<ItemPedido>();
     }
     
     //Set data de pagamento, forma de pagamento, situacao
@@ -89,7 +92,7 @@ public class Pedido {
        itensPedidos.add(ip);
        
        //A cada ligação com um objeto ItemPedido o valor do item deve ser subtraído do limite disponível do objeto Cliente.
-       
+       cliente.subtraiValorLimiteDisponivel(ip.getProduto().getPreco());
 
     }
 

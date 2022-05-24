@@ -12,7 +12,7 @@ public class Vendedor extends Pessoa{
     private double taxaComissao;
     
     //Assoc Bin
-    private ArrayList<Pedido> pedidos;
+    private ArrayList<Pedido> pedidos; //0..*
 
     //metodo construtor tem como parametros de entrada salario base e cpf + nome da classe pessoa
     public Vendedor(double salarioBase, String cpf, String nome) {

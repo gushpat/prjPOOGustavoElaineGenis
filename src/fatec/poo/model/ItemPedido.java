@@ -38,6 +38,12 @@ public class ItemPedido{
     public double getQtdeVendida() {
         return qtdeVendida;
     }
+
+    public Produto getProduto() {
+        return produto;
+    }
+    
+    
     
     
     
