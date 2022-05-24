@@ -1,6 +1,6 @@
 
 package fatec.poo.model;
-
+import java.util.ArrayList;
 /**
  *
  * @author gusta
@@ -10,11 +10,17 @@ public class Vendedor extends Pessoa{
     //Atributos da classe
     private double salarioBase;
     private double taxaComissao;
+    
+    //Assoc Bin
+    private ArrayList<Pedido> pedidos;
 
     //metodo construtor tem como parametros de entrada salario base e cpf + nome da classe pessoa
     public Vendedor(double salarioBase, String cpf, String nome) {
         super(cpf, nome);
         this.salarioBase = salarioBase;
+        
+        //inicializa array list pedidos
+        pedidos = new ArrayList<Pedido>();
     }
     
     //set taxa de comissao e salario base
@@ -38,7 +44,11 @@ public class Vendedor extends Pessoa{
         this.taxaComissao = taxaComissao;
     }
     
-    
+    //adiciona itens no array pedidos
+    public void addPedidos(Pedido p){
+       pedidos.add(p);
+      
+    }
     
     
     

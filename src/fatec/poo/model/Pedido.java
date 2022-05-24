@@ -64,7 +64,35 @@ public class Pedido {
         return situacao;
     }
 
-    //Get and Set 
+    //Get and Set Cliente
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    
+    //Get and Set Vendedor
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+    
+    
+    //Get and Set ItensPedidos
+
+    public void addItens(ItemPedido ip){
+       itensPedidos.add(ip);
+       
+       //A cada ligação com um objeto ItemPedido o valor do item deve ser subtraído do limite disponível do objeto Cliente.
+       
+
+    }
+
     
     
     

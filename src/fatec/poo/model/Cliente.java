@@ -1,6 +1,6 @@
 
 package fatec.poo.model;
-
+import java.util.ArrayList;
 /**
  *
  * @author gusta
@@ -12,6 +12,9 @@ public class Cliente extends Pessoa{
     //Atributos da classe
     private double limiteCred;
     private double limiteDisp;
+    
+    //Assoc Bin
+    private ArrayList<Pedido> pedidos;
 
     //metodo construtor tem como parametros de entrada limite de credito e cpf + nome da classe pessoa
     public Cliente(double limiteCred, String cpf, String nome) {
@@ -20,6 +23,9 @@ public class Cliente extends Pessoa{
         
         //Inicializa o limite de disponível com o valor do limite de crédito.
         this.limiteDisp = limiteCred; 
+        
+        //inicializa array list pedidos
+        pedidos = new ArrayList<Pedido>();
     }
     
     //set limite de credito
@@ -37,6 +43,16 @@ public class Cliente extends Pessoa{
     public double getLimiteDisp() {
         return limiteDisp;
     }
+
+    //adiciona itens no array pedidos
+    public void addPedidos(Pedido p){
+       pedidos.add(p);
+      
+    }
+    
+    
+    
+    
 
    
     

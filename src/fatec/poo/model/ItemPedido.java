@@ -11,9 +11,17 @@ public class ItemPedido{
     private int sequencia;
     private double qtdeVendida;
     
+    //assoc Bin
+    private Produto produto;
+    
     //Metodo construtor
-    //************
-    //Wait a second please my friend
+
+    public ItemPedido(int sequencia, double qtdeVendida, Produto produto) {
+        this.sequencia = sequencia;
+        this.qtdeVendida = qtdeVendida;
+        this.produto = produto;
+    }
+    
     
     
     //set quantidade vendida
