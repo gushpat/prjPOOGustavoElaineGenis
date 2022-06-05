@@ -4,11 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/Projetos%20GitHub/prjPOOGustavoLaineGenis/src/fatec/poo/view/GuiCliente.java</file>
+            <file>file:/E:/Projetos%20GitHub/prjPOOGustavoLaineGenis/src/fatec/poo/view/GuiVendedor.java</file>
             <file>file:/E:/Projetos%20GitHub/prjPOOGustavoLaineGenis/src/fatec/poo/model/Cliente.java</file>
             <file>file:/E:/Projetos%20GitHub/prjPOOGustavoLaineGenis/src/fatec/poo/model/Pedido.java</file>
             <file>file:/E:/Projetos%20GitHub/prjPOOGustavoLaineGenis/src/fatec/poo/model/Pessoa.java</file>
             <file>file:/E:/Projetos%20GitHub/prjPOOGustavoLaineGenis/src/fatec/poo/model/ItemPedido.java</file>
             <file>file:/E:/Projetos%20GitHub/prjPOOGustavoLaineGenis/src/fatec/poo/model/Vendedor.java</file>
+            <file>file:/E:/Projetos%20GitHub/prjPOOGustavoLaineGenis/src/fatec/poo/view/GuiProduto.java</file>
             <file>file:/E:/Projetos%20GitHub/prjPOOGustavoLaineGenis/src/fatec/poo/view/GuiMenu.java</file>
         </group>
     </open-files>

@@ -29,13 +29,13 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        mitCliente = new javax.swing.JMenuItem();
+        mitVendedores = new javax.swing.JMenuItem();
+        mitProdutos = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        mitSair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        mitEmitirPedido = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Controle de Vendas");
@@ -44,25 +44,45 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenu1.setText("Cadastros");
 
-        jMenuItem1.setText("Clientes");
-        jMenu1.add(jMenuItem1);
+        mitCliente.setText("Clientes");
+        mitCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mitCliente);
 
-        jMenuItem2.setText("Vendedores");
-        jMenu1.add(jMenuItem2);
+        mitVendedores.setText("Vendedores");
+        mitVendedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitVendedoresActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mitVendedores);
 
-        jMenuItem3.setText("Produtos");
-        jMenu1.add(jMenuItem3);
+        mitProdutos.setText("Produtos");
+        mitProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitProdutosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mitProdutos);
         jMenu1.add(jSeparator1);
 
-        jMenuItem4.setText("Sair");
-        jMenu1.add(jMenuItem4);
+        mitSair.setText("Sair");
+        mitSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitSairActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mitSair);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Pedido");
 
-        jMenuItem5.setText("Emitir Pedido");
-        jMenu2.add(jMenuItem5);
+        mitEmitirPedido.setText("Emitir Pedido");
+        jMenu2.add(mitEmitirPedido);
 
         jMenuBar1.add(jMenu2);
 
@@ -81,6 +101,27 @@ public class GuiMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mitClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitClienteActionPerformed
+        
+        //cria uma instancia da classe guicliente e a torna visível
+        new GuiCliente().setVisible(true);        
+    }//GEN-LAST:event_mitClienteActionPerformed
+
+    private void mitSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitSairActionPerformed
+        //fecha a janela Controle de Vendas     
+        this.dispose();
+    }//GEN-LAST:event_mitSairActionPerformed
+
+    private void mitVendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitVendedoresActionPerformed
+        //cria uma instancia da classe guivendedor e a torna visível
+        new GuiVendedor().setVisible(true);
+    }//GEN-LAST:event_mitVendedoresActionPerformed
+
+    private void mitProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitProdutosActionPerformed
+        //cria uma instancia da classe guiproduto e a torna visível
+        new GuiProduto().setVisible(true);
+    }//GEN-LAST:event_mitProdutosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,11 +162,11 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenuItem mitCliente;
+    private javax.swing.JMenuItem mitEmitirPedido;
+    private javax.swing.JMenuItem mitProdutos;
+    private javax.swing.JMenuItem mitSair;
+    private javax.swing.JMenuItem mitVendedores;
     // End of variables declaration//GEN-END:variables
 }
