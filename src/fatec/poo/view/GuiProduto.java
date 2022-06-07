@@ -77,10 +77,20 @@ public class GuiProduto extends javax.swing.JFrame {
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/Alterar.png"))); // NOI18N
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/Eraser.png"))); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/exit.png"))); // NOI18N
         btnSair.setText("Sair");
@@ -195,9 +205,10 @@ public class GuiProduto extends javax.swing.JFrame {
         //e o código seguirá para a estrutura de decisão abaixo (if)
         //senão após completar a busca no arraylist, seguirá direto para o else
         boolean idFound = false;
-        //essa variavel guarda o index 
-        int index = 0;
-
+        
+        //A variável INDEX foi movida
+        //agora ela é global pois é utilizada também na função ALTERAR
+        
         for (int i = 0; i < prod.size(); i++)
         {
             //obtem o valor do atributo codigo da classe produto, a converte e integer e a compara com o id fornecido pelo usuário
@@ -239,6 +250,21 @@ public class GuiProduto extends javax.swing.JFrame {
             
             //ativa o botão de excluir
             btnExcluir.setEnabled(true); 
+            
+            //desativa o txtcodigo
+            txtCodigo.setEnabled(false);
+            
+            //ativa txtDescricao
+            txtDescricao.setEnabled(true);
+            
+            //ativa txtEstoqueMinimo
+            txtEstoqueMinimo.setEnabled(true);
+            
+            //ativa txtPrecoUnitario
+            txtPrecoUnitario.setEnabled(true);
+            
+            //ativa quantidade disponível
+            txtQtdeDisponivel.setEnabled(true);
             
         
         }
@@ -298,9 +324,51 @@ public class GuiProduto extends javax.swing.JFrame {
         //para finalizar, adicionamos o objeto temporario em nosso ArrayList
         prod.add(prodtemp);
         
-        //Como a inserção já foi realizada, então voltaremos o form ao seu estado inicial
+        //****Como a inserção já foi realizada, então voltaremos o form ao seu estado inicial****
+        returnFormToSearchState();
         
-        //ativa botão de consulta
+    }//GEN-LAST:event_btnIncluirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        
+        //agora vamos alterar os dados 
+        
+        //pega o codigo presente no txtCodigo, transforma em int e atribui a uma variavel
+        int id = Integer.parseInt(txtCodigo.getText());
+        
+        //para realizar a alteração, é necessário criar um objeto temporario da classe Produto
+        //A classe produto tem como parametros de entrada o código (String) e a descrição (String)
+        Produto prodtemp = new Produto(String. valueOf(id), txtDescricao.getText());
+        
+        //insere o conteúdo do campo txtEstoque Minimo no objeto da classe produto
+        prodtemp.setEstoqueMinimo(Double.parseDouble(txtEstoqueMinimo.getText()));
+        
+        //insere o conteúdo do campo txtPrecoUnitario Minimo no objeto da classe produto
+        prodtemp.setPreco(Double.parseDouble(txtPrecoUnitario.getText()));
+        
+        //insere o conteúdo do campo txtQtdeDisponivel no objeto da classe produto
+        prodtemp.setQtdeEstoque(Double.parseDouble(txtQtdeDisponivel.getText()));
+        
+        //pra finalizar utilizamos o arraylist.set(index, valor)
+        prod.set(index, prodtemp);
+        
+        //****Como a alteração já foi realizada, então voltaremos o form ao seu estado inicial****
+        returnFormToSearchState();
+            
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        //utilizaremos a função remove no arraylist juntamente com a variável index
+        prod.remove(index);
+        
+        //****Como a exclusão já foi realizada, então voltaremos o form ao seu estado inicial****
+        returnFormToSearchState();
+        
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void returnFormToSearchState() //Função criada exclusivamente para retornar o form ao estado inicial
+    {
+    //ativa botão de consulta
             btnConsultar.setEnabled(true);
             
             //desativa o botão de inserção
@@ -335,8 +403,9 @@ public class GuiProduto extends javax.swing.JFrame {
             
             //limpa txtQtdeDisponivel
             txtQtdeDisponivel.setText(null);
-    }//GEN-LAST:event_btnIncluirActionPerformed
-
+    
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -395,5 +464,7 @@ public class GuiProduto extends javax.swing.JFrame {
     //criação do ponteiro auxiliar
     private ArrayList <Produto> prod;
     
+    //essa variavel guarda o index 
+    private int index = 0;
 
 }
