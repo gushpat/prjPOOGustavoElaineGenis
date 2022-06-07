@@ -5,6 +5,10 @@
  */
 package fatec.poo.view;
 
+import fatec.poo.model.Pessoa;
+import fatec.poo.model.Produto;
+import java.util.ArrayList;
+
 /**
  *
  * @author gusta
@@ -105,7 +109,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private void mitClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitClienteActionPerformed
         
         //cria uma instancia da classe guicliente e a torna visível
-        new GuiCliente().setVisible(true);        
+        new GuiCliente(cadCliVend).setVisible(true);        
     }//GEN-LAST:event_mitClienteActionPerformed
 
     private void mitSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitSairActionPerformed
@@ -115,12 +119,13 @@ public class GuiMenu extends javax.swing.JFrame {
 
     private void mitVendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitVendedoresActionPerformed
         //cria uma instancia da classe guivendedor e a torna visível
-        new GuiVendedor().setVisible(true);
+        new GuiVendedor(cadCliVend).setVisible(true);
     }//GEN-LAST:event_mitVendedoresActionPerformed
 
     private void mitProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitProdutosActionPerformed
         //cria uma instancia da classe guiproduto e a torna visível
-        new GuiProduto().setVisible(true);
+        //parametro = arraylist criado abaixo
+        new GuiProduto(cadProd).setVisible(true);
     }//GEN-LAST:event_mitProdutosActionPerformed
 
     /**
@@ -169,4 +174,12 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem mitSair;
     private javax.swing.JMenuItem mitVendedores;
     // End of variables declaration//GEN-END:variables
+
+    
+    //criação dos arraylist da classe pessoa e da classe produto
+    //os objetos instanciados deverão ficar salvos nos arrays abaixo
+    private ArrayList<Pessoa> cadCliVend = new ArrayList<Pessoa>();
+    private ArrayList<Produto> cadProd = new ArrayList<Produto>();
+    
+
 }

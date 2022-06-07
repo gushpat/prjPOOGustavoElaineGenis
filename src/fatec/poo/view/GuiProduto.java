@@ -5,6 +5,11 @@
  */
 package fatec.poo.view;
 
+import fatec.poo.model.Produto;
+import java.util.ArrayList;
+
+
+
 /**
  *
  * @author gusta
@@ -14,7 +19,11 @@ public class GuiProduto extends javax.swing.JFrame {
     /**
      * Creates new form GuiProduto
      */
-    public GuiProduto() {
+    public GuiProduto(ArrayList <Produto> p) {
+        
+        //atribui o parametro recebido no ponteiro auxiliar criado abaixo
+        prod = p;
+        
         initComponents();
     }
 
@@ -44,6 +53,7 @@ public class GuiProduto extends javax.swing.JFrame {
         txtEstoqueMinimo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro de Produtos");
 
         jLabel2.setText("Codigo");
 
@@ -167,6 +177,7 @@ public class GuiProduto extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -194,7 +205,8 @@ public class GuiProduto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GuiProduto().setVisible(true);
+                //Não precisa mais
+                //new GuiProduto().setVisible(true);
             }
         });
     }
@@ -216,4 +228,9 @@ public class GuiProduto extends javax.swing.JFrame {
     private javax.swing.JTextField txtPrecoUnitario;
     private javax.swing.JTextField txtQtdeDisponivel;
     // End of variables declaration//GEN-END:variables
+
+    //criação do ponteiro auxiliar
+    private ArrayList <Produto> prod;
+
+
 }

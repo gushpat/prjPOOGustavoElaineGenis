@@ -5,6 +5,9 @@
  */
 package fatec.poo.view;
 
+import fatec.poo.model.Pessoa;
+import java.util.ArrayList;
+
 /**
  *
  * @author gusta
@@ -14,7 +17,10 @@ public class GuiVendedor extends javax.swing.JFrame {
     /**
      * Creates new form GuiVendedor
      */
-    public GuiVendedor() {
+    public GuiVendedor(ArrayList <Pessoa> p) {
+        
+        //atribui o parametro recebido no ponteiro auxiliar criado abaixo
+        pess = p;
         initComponents();
     }
 
@@ -267,7 +273,7 @@ public class GuiVendedor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GuiVendedor().setVisible(true);
+                //new GuiVendedor().setVisible(true);
             }
         });
     }
@@ -298,4 +304,8 @@ public class GuiVendedor extends javax.swing.JFrame {
     private javax.swing.JTextField txtTaxaComissao;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
+
+    //criação do ponteiro auxiliar
+    private ArrayList <Pessoa> pess;
+
 }
