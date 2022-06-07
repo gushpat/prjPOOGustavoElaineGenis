@@ -24,7 +24,7 @@ public class GuiCliente extends javax.swing.JFrame {
     public GuiCliente(ArrayList <Pessoa> p) {
         
         //atribui o parametro recebido no ponteiro auxiliar criado abaixo
-        pess = p;
+        pes = p;
         
         initComponents();
     }
@@ -317,5 +317,5 @@ public class GuiCliente extends javax.swing.JFrame {
 
 
     //criação do ponteiro auxiliar
-    private ArrayList <Pessoa> pess;
+    private ArrayList <Pessoa> pes;
 }
