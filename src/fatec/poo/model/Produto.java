@@ -85,6 +85,13 @@ public class Produto {
     public void subtraiEstoque(double d){
        this.qtdeEstoque -= d;
     }
+
+    //get codigo, retorna o codigo.
+    //Necessário para a lógica presente no botão consultar
+    //do GuiProduto funcionar
+    public String getCodigo() {
+        return codigo;
+    }
     
     
     
