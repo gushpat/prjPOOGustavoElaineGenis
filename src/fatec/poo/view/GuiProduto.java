@@ -190,11 +190,13 @@ public class GuiProduto extends javax.swing.JFrame {
         int id = Integer.parseInt(txtCodigo.getText());
         
         //Aqui começa um pouco da POG
-        //Deve ter um jeito melhor de fazer isso
+        //Deve ter um jeito melhor de fazer isso...
         //Caso essa variavel seja true, então o for será parado
         //e o código seguirá para a estrutura de decisão abaixo (if)
         //senão após completar a busca no arraylist, seguirá direto para o else
         boolean idFound = false;
+        //essa variavel guarda o index 
+        int index = 0;
 
         for (int i = 0; i < prod.size(); i++)
         {
@@ -203,6 +205,8 @@ public class GuiProduto extends javax.swing.JFrame {
           {
               //encontrou ID
               idFound = true; 
+              //atribui valor de i ao index
+              index = i;
               //não é mais necessário executar o FOR
               break;
           
@@ -216,16 +220,16 @@ public class GuiProduto extends javax.swing.JFrame {
         {
             //exiba o conteudo *************************************
             //exibe conteudo do atributo descricao da classe produto no arraylist com o index = id 
-            txtDescricao.setText(prod.get(id).getDescricao());
+            txtDescricao.setText(prod.get(index).getDescricao());
             
             //exibe conteudo do atributo quantidade de estoque da classe produto no arraylist com o index = id após convertê-la de double para string
-            txtQtdeDisponivel.setText(String. valueOf(prod.get(id).getQtdeEstoque()));
+            txtQtdeDisponivel.setText(String. valueOf(prod.get(index).getQtdeEstoque()));
             
             //exibe conteudo do atributo estoque minimo da classe produto no arraylist com o index = id após convertê-la de double para string
-            txtEstoqueMinimo.setText(String. valueOf(prod.get(id).getEstoqueMinimo()));
+            txtEstoqueMinimo.setText(String. valueOf(prod.get(index).getEstoqueMinimo()));
             
             //exibe conteudo do atributo preço da classe produto no arraylist com o index = id após convertê-la de double para string
-            txtPrecoUnitario.setText(String. valueOf(prod.get(id).getPreco()));
+            txtPrecoUnitario.setText(String. valueOf(prod.get(index).getPreco()));
             
             //desativa botão de consulta
             btnConsultar.setEnabled(false); 
@@ -274,9 +278,7 @@ public class GuiProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-        
-        //Não tá pronto Ainda*****************************************************************
-        
+          
         //pega o codigo presente no txtCodigo, transforma em int e atribui a uma variavel
         int id = Integer.parseInt(txtCodigo.getText());
         
@@ -295,6 +297,44 @@ public class GuiProduto extends javax.swing.JFrame {
         
         //para finalizar, adicionamos o objeto temporario em nosso ArrayList
         prod.add(prodtemp);
+        
+        //Como a inserção já foi realizada, então voltaremos o form ao seu estado inicial
+        
+        //ativa botão de consulta
+            btnConsultar.setEnabled(true);
+            
+            //desativa o botão de inserção
+            btnIncluir.setEnabled(false);
+            
+            //ativa botão de codigo
+            txtCodigo.setEnabled(true);
+            
+            //limpa txtCodigo
+            txtCodigo.setText(null);
+            
+            //desativa txtDescricao
+            txtDescricao.setEnabled(false);
+            
+            //limpa txtDescricao
+            txtDescricao.setText(null);
+            
+            //desativa txtEstoqueMinimo
+            txtEstoqueMinimo.setEnabled(false);
+            
+             //limpa txtEstoqueMinimo
+            txtEstoqueMinimo.setText(null);
+            
+            //desativa txtPrecoUnitario
+            txtPrecoUnitario.setEnabled(false);
+            
+            //limpa txtPrecoUnitario
+            txtPrecoUnitario.setText(null);
+            
+            //desativa quantidade disponível
+            txtQtdeDisponivel.setEnabled(false);
+            
+            //limpa txtQtdeDisponivel
+            txtQtdeDisponivel.setText(null);
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     /**
