@@ -186,12 +186,32 @@ public class GuiProduto extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         
-
         //pega o codigo presente no txtCodigo, transforma em int e atribui a uma variavel
         int id = Integer.parseInt(txtCodigo.getText());
         
-        //se, o arraylist prod contem o codigo presente na variavel ID
-        if(prod.contains(id))
+        //Aqui começa um pouco da POG
+        //Deve ter um jeito melhor de fazer isso
+        //Caso essa variavel seja true, então o for será parado
+        //e o código seguirá para a estrutura de decisão abaixo (if)
+        //senão após completar a busca no arraylist, seguirá direto para o else
+        boolean idFound = false;
+
+        for (int i = 0; i < prod.size(); i++)
+        {
+            //obtem o valor do atributo codigo da classe produto, a converte e integer e a compara com o id fornecido pelo usuário
+          if (Integer.parseInt(prod.get(i).getCodigo()) == id)
+          {
+              //encontrou ID
+              idFound = true; 
+              //não é mais necessário executar o FOR
+              break;
+          
+          }
+        
+        }
+        
+        //se idFound é igual a true
+        if(idFound)
             
         {
             //exiba o conteudo *************************************
@@ -246,10 +266,7 @@ public class GuiProduto extends javax.swing.JFrame {
             
             //ativa quantidade disponível
             txtQtdeDisponivel.setEnabled(true);
-            
-            
-            
-  
+
         }
         
         
@@ -261,21 +278,23 @@ public class GuiProduto extends javax.swing.JFrame {
         //Não tá pronto Ainda*****************************************************************
         
         //pega o codigo presente no txtCodigo, transforma em int e atribui a uma variavel
-        //int id = Integer.parseInt(txtCodigo.getText());
+        int id = Integer.parseInt(txtCodigo.getText());
+        
+        //para realizar a inserção, é necessário criar um objeto temporario da classe Produto
+        //A classe produto tem como parametros de entrada o código (String) e a descrição (String)
+        Produto prodtemp = new Produto(String. valueOf(id), txtDescricao.getText());
 
-        //insere o conteúdo do campo txtDescricao no index = id do arraylist da classe produto
-        //prod.get(id).setDescricao(txtDescricao.getText());
+        //insere o conteúdo do campo txtEstoque Minimo no objeto da classe produto
+        prodtemp.setEstoqueMinimo(Double.parseDouble(txtEstoqueMinimo.getText()));
         
-        //insere o conteúdo do campo txtEstoque Minimo no index = id do arraylist da classe produto
-        //prod.get(id).setEstoqueMinimo(Double.parseDouble(txtEstoqueMinimo.getText()));
+        //insere o conteúdo do campo txtPrecoUnitario Minimo no objeto da classe produto
+        prodtemp.setPreco(Double.parseDouble(txtPrecoUnitario.getText()));
         
-        //insere o conteúdo do campo txtPrecoUnitario Minimo no index = id do arraylist da classe produto
-        //prod.get(id).setPreco(Double.parseDouble(txtPrecoUnitario.getText()));
+        //insere o conteúdo do campo txtQtdeDisponivel no objeto da classe produto
+        prodtemp.setQtdeEstoque(Double.parseDouble(txtQtdeDisponivel.getText()));
         
-        //insere o conteúdo do campo txtQtdeDisponivel no index = id do arraylist da classe produto
-        //prod.get(id).setQtdeEstoque(Double.parseDouble(txtQtdeDisponivel.getText()));
-        
-        
+        //para finalizar, adicionamos o objeto temporario em nosso ArrayList
+        prod.add(prodtemp);
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     /**
@@ -335,6 +354,6 @@ public class GuiProduto extends javax.swing.JFrame {
 
     //criação do ponteiro auxiliar
     private ArrayList <Produto> prod;
-
+    
 
 }
