@@ -330,4 +330,7 @@ public class GuiCliente extends javax.swing.JFrame {
 
     //criação do ponteiro auxiliar
     private ArrayList <Pessoa> pes;
+    
+    //essa variavel guarda o index 
+    private int index = 0;
 }
