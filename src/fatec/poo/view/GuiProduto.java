@@ -358,8 +358,13 @@ public class GuiProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        //utilizaremos a função remove no arraylist juntamente com a variável index
+        //utilizaremos a função remove do arraylist juntamente com a variável index
         prod.remove(index);
+        
+        //desativa botão alterar
+        btnAlterar.setEnabled(false);
+        //desativa botão excluir
+        btnExcluir.setEnabled(false);
         
         //****Como a exclusão já foi realizada, então voltaremos o form ao seu estado inicial****
         returnFormToSearchState();
