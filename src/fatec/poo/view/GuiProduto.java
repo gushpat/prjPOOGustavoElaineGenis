@@ -59,10 +59,20 @@ public class GuiProduto extends javax.swing.JFrame {
 
         btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/pesq.png"))); // NOI18N
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/add.png"))); // NOI18N
         btnIncluir.setText("Incluir");
         btnIncluir.setEnabled(false);
+        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncluirActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/Alterar.png"))); // NOI18N
         btnAlterar.setText("Alterar");
@@ -173,6 +183,100 @@ public class GuiProduto extends javax.swing.JFrame {
         //fecha a janela Cadastro de Clientes
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        
+
+        //pega o codigo presente no txtCodigo, transforma em int e atribui a uma variavel
+        int id = Integer.parseInt(txtCodigo.getText());
+        
+        //se, o arraylist prod contem o codigo presente na variavel ID
+        if(prod.contains(id))
+            
+        {
+            //exiba o conteudo *************************************
+            //exibe conteudo do atributo descricao da classe produto no arraylist com o index = id 
+            txtDescricao.setText(prod.get(id).getDescricao());
+            
+            //exibe conteudo do atributo quantidade de estoque da classe produto no arraylist com o index = id após convertê-la de double para string
+            txtQtdeDisponivel.setText(String. valueOf(prod.get(id).getQtdeEstoque()));
+            
+            //exibe conteudo do atributo estoque minimo da classe produto no arraylist com o index = id após convertê-la de double para string
+            txtEstoqueMinimo.setText(String. valueOf(prod.get(id).getEstoqueMinimo()));
+            
+            //exibe conteudo do atributo preço da classe produto no arraylist com o index = id após convertê-la de double para string
+            txtPrecoUnitario.setText(String. valueOf(prod.get(id).getPreco()));
+            
+            //desativa botão de consulta
+            btnConsultar.setEnabled(false); 
+            
+            //ativa o botão de alterar
+            btnAlterar.setEnabled(true);
+            
+            //ativa o botão de excluir
+            btnExcluir.setEnabled(true); 
+            
+        
+        }
+        else
+        {
+            //caso não tenha encontrado o elemento com o ID digitado
+            //ativar o botão de inserção
+            
+            //desativa botão de consulta
+            btnConsultar.setEnabled(false);
+            
+            //ativa o botão de inserção
+            btnIncluir.setEnabled(true);
+            
+            //Isto não estava especificado na documentação
+            //mas achei melhor bloquear o txtCodigo
+            //pois poderia dar algum problema caso o usuário trocasse
+            //o conteúdo do campo txtCodigo e colocasse um outro código já existente
+            txtCodigo.setEnabled(false);
+            
+            //ativa txtDescricao
+            txtDescricao.setEnabled(true);
+            
+            //ativa txtEstoqueMinimo
+            txtEstoqueMinimo.setEnabled(true);
+            
+            //ativa txtPrecoUnitario
+            txtPrecoUnitario.setEnabled(true);
+            
+            //ativa quantidade disponível
+            txtQtdeDisponivel.setEnabled(true);
+            
+            
+            
+  
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
+        
+        //Não tá pronto Ainda*****************************************************************
+        
+        //pega o codigo presente no txtCodigo, transforma em int e atribui a uma variavel
+        //int id = Integer.parseInt(txtCodigo.getText());
+
+        //insere o conteúdo do campo txtDescricao no index = id do arraylist da classe produto
+        //prod.get(id).setDescricao(txtDescricao.getText());
+        
+        //insere o conteúdo do campo txtEstoque Minimo no index = id do arraylist da classe produto
+        //prod.get(id).setEstoqueMinimo(Double.parseDouble(txtEstoqueMinimo.getText()));
+        
+        //insere o conteúdo do campo txtPrecoUnitario Minimo no index = id do arraylist da classe produto
+        //prod.get(id).setPreco(Double.parseDouble(txtPrecoUnitario.getText()));
+        
+        //insere o conteúdo do campo txtQtdeDisponivel no index = id do arraylist da classe produto
+        //prod.get(id).setQtdeEstoque(Double.parseDouble(txtQtdeDisponivel.getText()));
+        
+        
+    }//GEN-LAST:event_btnIncluirActionPerformed
 
     /**
      * @param args the command line arguments
