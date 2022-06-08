@@ -6,7 +6,9 @@
 package fatec.poo.view;
 
 import fatec.poo.model.Pessoa;
+import fatec.poo.model.Vendedor;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -68,6 +70,11 @@ public class GuiVendedor extends javax.swing.JFrame {
 
         btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/pesq.png"))); // NOI18N
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("CPF");
 
@@ -76,6 +83,11 @@ public class GuiVendedor extends javax.swing.JFrame {
         btnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/add.png"))); // NOI18N
         btnIncluir.setText("Incluir");
         btnIncluir.setEnabled(false);
+        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncluirActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nome");
 
@@ -86,6 +98,11 @@ public class GuiVendedor extends javax.swing.JFrame {
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/Alterar.png"))); // NOI18N
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Endereço");
 
@@ -94,6 +111,11 @@ public class GuiVendedor extends javax.swing.JFrame {
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/Eraser.png"))); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Cidade");
 
@@ -206,19 +228,21 @@ public class GuiVendedor extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbxUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
                         .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -243,6 +267,178 @@ public class GuiVendedor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+
+        //consultar cpf
+        String cpf = txtCpf.getText();
+        
+        boolean cpfFound = false;
+        
+        for (int i = 0; i < pes.size(); i++)
+        {
+            //obtem o valor do atributo codigo da classe produto, a converte e integer e a compara com o id fornecido pelo usuário
+          if (pes.get(i).getCpf() == cpf)
+          {
+              //encontrou CPF
+              cpfFound = true; 
+              //atribui valor de i ao index
+              index = i;
+              //não é mais necessário executar o FOR
+              break;
+          
+          }
+        
+        }
+        
+        if (cpfFound)
+        {
+            
+            //usando o typecast PESSOA => CLIENTE
+            //Vendedor ven = (Vendedor)pes.get(index);
+            
+            Pessoa ven = pes.get(index);
+
+            txtNome.setText(ven.getNome());
+            txtEndereco.setText(ven.getEndereco());
+            txtCidade.setText(ven.getCidade());
+            txtDDD.setText(ven.getDdd());
+            txtCEP.setText(ven.getCep());
+            txtTelefone.setText(ven.getTelefone());
+            
+            //isso aqui vai ser um pouquinho mais chatinho de mexer
+            //mas vou usar uma função pra me ajudar com isso
+            cbxUF.setSelectedIndex(ufArray.indexOf(ven.getUf()));
+            
+            
+            //usar o typecast nessa galera
+            //ainda não está funcionando como deveria :(
+            //*********************************
+            
+            //
+            
+            //desativa botão de consulta
+            btnConsultar.setEnabled(false); 
+            
+            //ativa o botão de alterar
+            btnAlterar.setEnabled(true);
+            
+            //ativa o botão de excluir
+            btnExcluir.setEnabled(true); 
+            
+            //desativa o txtCPF
+            txtCpf.setEnabled(false);
+            
+            txtNome.setEnabled(true);
+            
+            txtEndereco.setEnabled(true);
+            
+            txtCidade.setEnabled(true);
+            
+            txtCEP.setEnabled(true);
+            
+            txtDDD.setEnabled(true);
+            
+            txtTelefone.setEnabled(true);
+            
+            cbxUF.setEnabled(true);
+            
+            
+            
+        }
+        else
+        {
+            //desativa botão de consulta
+            btnConsultar.setEnabled(false);
+            
+            //ativa o botão de inserção
+            btnIncluir.setEnabled(true); 
+            
+            
+            //desativa o txtCPF
+            txtCpf.setEnabled(false);
+            
+            txtNome.setEnabled(true);
+            
+            txtEndereco.setEnabled(true);
+            
+            txtCidade.setEnabled(true);
+            
+            txtCEP.setEnabled(true);
+            
+            txtDDD.setEnabled(true);
+            
+            txtTelefone.setEnabled(true);
+            
+            cbxUF.setEnabled(true);
+        }
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIncluirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        
+        pes.remove(index);
+        
+        returnFormToSearchState();
+        
+        
+    }//GEN-LAST:event_btnExcluirActionPerformed
+    private void returnFormToSearchState() //Função criada exclusivamente para retornar o form ao estado inicial
+    {
+        //desativa botão alterar
+        btnAlterar.setEnabled(false);
+        //desativa botão excluir
+        btnExcluir.setEnabled(false);
+        
+        //ativa botão de consulta
+        btnConsultar.setEnabled(true);
+            
+        //desativa o botão de inserção
+        btnIncluir.setEnabled(false);
+        
+        txtCpf.setText(null);
+        txtNome.setText(null);
+        txtEndereco.setText(null);
+        txtCidade.setText(null);
+        txtDDD.setText(null);
+        txtSalarioBase.setText(null);
+        txtTaxaComissao.setText(null);
+        txtCEP.setText(null);
+        txtTelefone.setText(null);
+        cbxUF.setSelectedIndex(-1);
+        
+        //desativa o txtCPF
+            txtCpf.setEnabled(true);
+            
+            txtNome.setEnabled(false);
+            
+            txtEndereco.setEnabled(false);
+            
+            txtCidade.setEnabled(false);
+            
+            txtCEP.setEnabled(false);
+            
+            txtDDD.setEnabled(false);
+            
+            txtTelefone.setEnabled(false);
+            
+            
+            
+            cbxUF.setEnabled(false);
+    }
     /**
      * @param args the command line arguments
      */
@@ -308,4 +504,11 @@ public class GuiVendedor extends javax.swing.JFrame {
     //criação do ponteiro auxiliar
     private ArrayList <Pessoa> pes;
 
+    //essa variavel guarda o index 
+    private int index = 0;
+    
+    //necessário para UF 
+    ArrayList<String> ufArray = new ArrayList<>(Arrays.asList(
+                "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG",
+                "PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"));
 }

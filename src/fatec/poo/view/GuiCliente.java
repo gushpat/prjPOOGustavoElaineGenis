@@ -9,8 +9,10 @@
 package fatec.poo.view;
 
 
+import fatec.poo.model.Cliente;
 import fatec.poo.model.Pessoa;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -120,14 +122,29 @@ public class GuiCliente extends javax.swing.JFrame {
         btnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/add.png"))); // NOI18N
         btnIncluir.setText("Incluir");
         btnIncluir.setEnabled(false);
+        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncluirActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/Alterar.png"))); // NOI18N
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/Eraser.png"))); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/poo/view/icon/exit.png"))); // NOI18N
         btnSair.setText("Sair");
@@ -260,11 +277,221 @@ public class GuiCliente extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         
+        //consultar cpf
+        String cpf = txtCpf.getText();
+        
+        boolean cpfFound = false;
+        
+        for (int i = 0; i < pes.size(); i++)
+        {
+            //obtem o valor do atributo codigo da classe produto, a converte e integer e a compara com o id fornecido pelo usuário
+          if (pes.get(i).getCpf() == cpf)
+          {
+              //encontrou CPF
+              cpfFound = true; 
+              //atribui valor de i ao index
+              index = i;
+              //não é mais necessário executar o FOR
+              break;
+          
+          }
+        
+        }
+        //fazer as alterações na UI
+        
+        if (cpfFound)
+        {
+            
+            //usando o typecast PESSOA => CLIENTE
+            Cliente cli = (Cliente)pes.get(index);
+
+            txtNome.setText(cli.getNome());
+            txtEndereco.setText(cli.getEndereco());
+            txtCidade.setText(cli.getCidade());
+            txtDDD.setText(cli.getDdd());
+            txtCEP.setText(cli.getCep());
+            txtTelefone.setText(cli.getTelefone());
+            
+            //isso aqui vai ser um pouquinho mais chatinho de mexer
+            //mas vou usar uma função pra me ajudar com isso
+            cbxUF.setSelectedIndex(ufArray.indexOf(cli.getUf()));
+            
+            
+            //usar o typecast nessa galera
+            //ainda não está funcionando como deveria :(
+            txtLimiteCredito.setText(String.valueOf(cli.getLimiteCred()));
+            lblLimiteDisponivel.setText(String.valueOf(cli.getLimiteDisp()));
+            
+            //
+            
+            //desativa botão de consulta
+            btnConsultar.setEnabled(false); 
+            
+            //ativa o botão de alterar
+            btnAlterar.setEnabled(true);
+            
+            //ativa o botão de excluir
+            btnExcluir.setEnabled(true); 
+            
+            //desativa o txtCPF
+            txtCpf.setEnabled(false);
+            
+            txtNome.setEnabled(true);
+            
+            txtEndereco.setEnabled(true);
+            
+            txtCidade.setEnabled(true);
+            
+            txtCEP.setEnabled(true);
+            
+            txtDDD.setEnabled(true);
+            
+            txtTelefone.setEnabled(true);
+            
+            txtLimiteCredito.setEnabled(true);
+            
+            lblLimiteDisponivel.setEnabled(true);
+            
+            cbxUF.setEnabled(true);
+            
+            
+            
+        }
+        else
+        {
+            //desativa botão de consulta
+            btnConsultar.setEnabled(false);
+            
+            //ativa o botão de inserção
+            btnIncluir.setEnabled(true); 
+            
+            
+            //desativa o txtCPF
+            txtCpf.setEnabled(false);
+            
+            txtNome.setEnabled(true);
+            
+            txtEndereco.setEnabled(true);
+            
+            txtCidade.setEnabled(true);
+            
+            txtCEP.setEnabled(true);
+            
+            txtDDD.setEnabled(true);
+            
+            txtTelefone.setEnabled(true);
+            
+            txtLimiteCredito.setEnabled(true);
+            
+            cbxUF.setEnabled(true);
+        }
+        
+        
         
         
         
     }//GEN-LAST:event_btnConsultarActionPerformed
 
+    private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
+        
+        String cpf = txtCpf.getText();
+        Double limiteCredito = Double.parseDouble(txtLimiteCredito.getText());
+        String nome = txtNome.getText();
+        
+        //limite credito, cpf, nome
+        Cliente cli = new Cliente(limiteCredito, cpf, nome);
+
+        cli.setCep(txtCEP.getText());
+        cli.setCidade(txtCidade.getText());
+        cli.setDdd(txtDDD.getText());
+        cli.setEndereco(txtEndereco.getText());
+        cli.setTelefone(txtTelefone.getText());
+        
+        cli.setUf(ufArray.get(cbxUF.getSelectedIndex()));
+        
+        //teste
+        pes.add(cli);
+        
+        returnFormToSearchState();
+    }//GEN-LAST:event_btnIncluirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+        
+        String cpf = txtCpf.getText();
+        Double limiteCredito = Double.parseDouble(txtLimiteCredito.getText());
+        String nome = txtNome.getText();
+        
+        //limite credito, cpf, nome
+        Cliente cli = new Cliente(limiteCredito, cpf, nome);
+
+        cli.setCep(txtCEP.getText());
+        cli.setCidade(txtCidade.getText());
+        cli.setDdd(txtDDD.getText());
+        cli.setEndereco(txtEndereco.getText());
+        cli.setTelefone(txtTelefone.getText());
+        
+        cli.setUf(ufArray.get(cbxUF.getSelectedIndex()));
+        
+        //pra finalizar utilizamos o arraylist.set(index, valor)
+        pes.set(index, cli);
+        
+        returnFormToSearchState();
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        
+        pes.remove(index);
+        
+        returnFormToSearchState();      
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void returnFormToSearchState() //Função criada exclusivamente para retornar o form ao estado inicial
+    {
+        //desativa botão alterar
+        btnAlterar.setEnabled(false);
+        //desativa botão excluir
+        btnExcluir.setEnabled(false);
+        
+        //ativa botão de consulta
+        btnConsultar.setEnabled(true);
+            
+        //desativa o botão de inserção
+        btnIncluir.setEnabled(false);
+        
+        txtCpf.setText(null);
+        txtNome.setText(null);
+        txtEndereco.setText(null);
+        txtCidade.setText(null);
+        txtDDD.setText(null);
+        txtLimiteCredito.setText(null);
+        lblLimiteDisponivel.setText(null);
+        txtCEP.setText(null);
+        txtTelefone.setText(null);
+        cbxUF.setSelectedIndex(-1);
+        
+        //desativa o txtCPF
+            txtCpf.setEnabled(true);
+            
+            txtNome.setEnabled(false);
+            
+            txtEndereco.setEnabled(false);
+            
+            txtCidade.setEnabled(false);
+            
+            txtCEP.setEnabled(false);
+            
+            txtDDD.setEnabled(false);
+            
+            txtTelefone.setEnabled(false);
+            
+            txtLimiteCredito.setEnabled(false);
+            
+            cbxUF.setEnabled(false);
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -333,4 +560,9 @@ public class GuiCliente extends javax.swing.JFrame {
     
     //essa variavel guarda o index 
     private int index = 0;
+    
+    //necessário para UF 
+    ArrayList<String> ufArray = new ArrayList<>(Arrays.asList(
+                "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG",
+                "PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"));
 }

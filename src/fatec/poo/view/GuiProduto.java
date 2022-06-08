@@ -352,6 +352,7 @@ public class GuiProduto extends javax.swing.JFrame {
         //pra finalizar utilizamos o arraylist.set(index, valor)
         prod.set(index, prodtemp);
         
+        
         //****Como a alteração já foi realizada, então voltaremos o form ao seu estado inicial****
         returnFormToSearchState();
             
@@ -360,12 +361,7 @@ public class GuiProduto extends javax.swing.JFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         //utilizaremos a função remove do arraylist juntamente com a variável index
         prod.remove(index);
-        
-        //desativa botão alterar
-        btnAlterar.setEnabled(false);
-        //desativa botão excluir
-        btnExcluir.setEnabled(false);
-        
+
         //****Como a exclusão já foi realizada, então voltaremos o form ao seu estado inicial****
         returnFormToSearchState();
         
@@ -373,6 +369,12 @@ public class GuiProduto extends javax.swing.JFrame {
 
     private void returnFormToSearchState() //Função criada exclusivamente para retornar o form ao estado inicial
     {
+        
+        //desativa botão alterar
+        btnAlterar.setEnabled(false);
+        //desativa botão excluir
+        btnExcluir.setEnabled(false);
+        
     //ativa botão de consulta
             btnConsultar.setEnabled(true);
             
