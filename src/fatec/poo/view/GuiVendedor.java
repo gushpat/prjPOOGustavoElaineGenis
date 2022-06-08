@@ -381,11 +381,48 @@ public class GuiVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-        // TODO add your handling code here:
+        String cpf = txtCpf.getText();
+        
+        String nome = txtNome.getText();
+        
+        //limite credito, cpf, nome
+        Pessoa ven = new Pessoa(cpf, nome);
+
+        ven.setCep(txtCEP.getText());
+        ven.setCidade(txtCidade.getText());
+        ven.setDdd(txtDDD.getText());
+        ven.setEndereco(txtEndereco.getText());
+        ven.setTelefone(txtTelefone.getText());
+        
+        ven.setUf(ufArray.get(cbxUF.getSelectedIndex()));
+        
+        //teste
+        pes.add(ven);
+        
+        returnFormToSearchState();
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
+        
+        String cpf = txtCpf.getText();
+        
+        String nome = txtNome.getText();
+        
+        //limite credito, cpf, nome
+        Pessoa ven = new Pessoa(cpf, nome);
+
+        ven.setCep(txtCEP.getText());
+        ven.setCidade(txtCidade.getText());
+        ven.setDdd(txtDDD.getText());
+        ven.setEndereco(txtEndereco.getText());
+        ven.setTelefone(txtTelefone.getText());
+        
+        ven.setUf(ufArray.get(cbxUF.getSelectedIndex()));
+        
+        //teste
+        pes.set(index, ven);
+        
+        returnFormToSearchState();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
