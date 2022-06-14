@@ -19,8 +19,8 @@ public class GuiVendedor extends javax.swing.JFrame {
     /**
      * Creates new form GuiVendedor
      */
-    public GuiVendedor(ArrayList <Pessoa> p) {
-        
+    public GuiVendedor(ArrayList<Pessoa> p) {
+
         //atribui o parametro recebido no ponteiro auxiliar criado abaixo
         pes = p;
         initComponents();
@@ -271,32 +271,28 @@ public class GuiVendedor extends javax.swing.JFrame {
 
         //consultar cpf
         String cpf = txtCpf.getText();
-        
+
         boolean cpfFound = false;
-        
-        for (int i = 0; i < pes.size(); i++)
-        {
+
+        for (int i = 0; i < pes.size(); i++) {
             //obtem o valor do atributo codigo da classe produto, a converte e integer e a compara com o id fornecido pelo usuário
-          if (pes.get(i).getCpf() == cpf)
-          {
-              //encontrou CPF
-              cpfFound = true; 
-              //atribui valor de i ao index
-              index = i;
-              //não é mais necessário executar o FOR
-              break;
-          
-          }
-        
+            if (cpf.equals(pes.get(i).getCpf())) {
+                //encontrou CPF
+                cpfFound = true;
+                //atribui valor de i ao index
+                index = i;
+                //não é mais necessário executar o FOR
+                break;
+
+            }
+
         }
-        
-        if (cpfFound)
-        {
-            
+
+        if (cpfFound) {
+
             //usando o typecast PESSOA => CLIENTE
             //Vendedor ven = (Vendedor)pes.get(index);
-            
-            Pessoa ven = pes.get(index);
+            Vendedor ven = (Vendedor) pes.get(index);
 
             txtNome.setText(ven.getNome());
             txtEndereco.setText(ven.getEndereco());
@@ -304,134 +300,136 @@ public class GuiVendedor extends javax.swing.JFrame {
             txtDDD.setText(ven.getDdd());
             txtCEP.setText(ven.getCep());
             txtTelefone.setText(ven.getTelefone());
-            
+
             //isso aqui vai ser um pouquinho mais chatinho de mexer
             //mas vou usar uma função pra me ajudar com isso
             cbxUF.setSelectedIndex(ufArray.indexOf(ven.getUf()));
-            
-            
-            //usar o typecast nessa galera
-            //ainda não está funcionando como deveria :(
-            //*********************************
-            
+
+            //Métodos da classe Vendedor
+            txtSalarioBase.setText(String.valueOf(ven.getSalarioBase()));
+            txtTaxaComissao.setText(String.valueOf(ven.getTaxaComissao()));
+
             //
-            
-            //desativa botão de consulta
-            btnConsultar.setEnabled(false); 
-            
-            //ativa o botão de alterar
-            btnAlterar.setEnabled(true);
-            
-            //ativa o botão de excluir
-            btnExcluir.setEnabled(true); 
-            
-            //desativa o txtCPF
-            txtCpf.setEnabled(false);
-            
-            txtNome.setEnabled(true);
-            
-            txtEndereco.setEnabled(true);
-            
-            txtCidade.setEnabled(true);
-            
-            txtCEP.setEnabled(true);
-            
-            txtDDD.setEnabled(true);
-            
-            txtTelefone.setEnabled(true);
-            
-            cbxUF.setEnabled(true);
-            
-            
-            
-        }
-        else
-        {
             //desativa botão de consulta
             btnConsultar.setEnabled(false);
-            
-            //ativa o botão de inserção
-            btnIncluir.setEnabled(true); 
-            
-            
+
+            //ativa o botão de alterar
+            btnAlterar.setEnabled(true);
+
+            //ativa o botão de excluir
+            btnExcluir.setEnabled(true);
+
             //desativa o txtCPF
             txtCpf.setEnabled(false);
-            
+
             txtNome.setEnabled(true);
-            
+
             txtEndereco.setEnabled(true);
-            
+
             txtCidade.setEnabled(true);
-            
+
             txtCEP.setEnabled(true);
-            
+
             txtDDD.setEnabled(true);
-            
+
             txtTelefone.setEnabled(true);
-            
+
             cbxUF.setEnabled(true);
+
+            txtTaxaComissao.setEnabled(true);
+
+            txtSalarioBase.setEnabled(true);
+
+        } else {
+            //desativa botão de consulta
+            btnConsultar.setEnabled(false);
+
+            //ativa o botão de inserção
+            btnIncluir.setEnabled(true);
+
+            //desativa o txtCPF
+            txtCpf.setEnabled(false);
+
+            txtNome.setEnabled(true);
+
+            txtEndereco.setEnabled(true);
+
+            txtCidade.setEnabled(true);
+
+            txtCEP.setEnabled(true);
+
+            txtDDD.setEnabled(true);
+
+            txtTelefone.setEnabled(true);
+
+            cbxUF.setEnabled(true);
+
+            txtTaxaComissao.setEnabled(true);
+
+            txtSalarioBase.setEnabled(true);
         }
-        
-        
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
         String cpf = txtCpf.getText();
-        
+
         String nome = txtNome.getText();
-        
-        //limite credito, cpf, nome
-        Pessoa ven = new Pessoa(cpf, nome);
+
+        double salarioBase = 0;
+        //salario base, cpf, nome
+        Vendedor ven = new Vendedor(salarioBase, cpf, nome);
 
         ven.setCep(txtCEP.getText());
         ven.setCidade(txtCidade.getText());
         ven.setDdd(txtDDD.getText());
         ven.setEndereco(txtEndereco.getText());
         ven.setTelefone(txtTelefone.getText());
-        
+
         ven.setUf(ufArray.get(cbxUF.getSelectedIndex()));
-        
-        //teste
+
+        ven.setSalarioBase(Double.parseDouble(txtSalarioBase.getText()));
+        ven.setTaxaComissao(Double.parseDouble(txtTaxaComissao.getText()));
+
         pes.add(ven);
-        
+
         returnFormToSearchState();
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        
+
         String cpf = txtCpf.getText();
-        
+
         String nome = txtNome.getText();
-        
-        //limite credito, cpf, nome
-        Pessoa ven = new Pessoa(cpf, nome);
+
+        double salarioBase = 0;
+        //salario base, cpf, nome
+        Vendedor ven = new Vendedor(salarioBase, cpf, nome);
 
         ven.setCep(txtCEP.getText());
         ven.setCidade(txtCidade.getText());
         ven.setDdd(txtDDD.getText());
         ven.setEndereco(txtEndereco.getText());
         ven.setTelefone(txtTelefone.getText());
-        
+
         ven.setUf(ufArray.get(cbxUF.getSelectedIndex()));
-        
-        //teste
+
+        ven.setSalarioBase(Double.parseDouble(txtSalarioBase.getText()));
+        ven.setTaxaComissao(Double.parseDouble(txtTaxaComissao.getText()));
+
         pes.set(index, ven);
-        
+
         returnFormToSearchState();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        
+
         pes.remove(index);
-        
+
         returnFormToSearchState();
-        
-        
+
+
     }//GEN-LAST:event_btnExcluirActionPerformed
     private void returnFormToSearchState() //Função criada exclusivamente para retornar o form ao estado inicial
     {
@@ -439,13 +437,13 @@ public class GuiVendedor extends javax.swing.JFrame {
         btnAlterar.setEnabled(false);
         //desativa botão excluir
         btnExcluir.setEnabled(false);
-        
+
         //ativa botão de consulta
         btnConsultar.setEnabled(true);
-            
+
         //desativa o botão de inserção
         btnIncluir.setEnabled(false);
-        
+
         txtCpf.setText(null);
         txtNome.setText(null);
         txtEndereco.setText(null);
@@ -456,26 +454,28 @@ public class GuiVendedor extends javax.swing.JFrame {
         txtCEP.setText(null);
         txtTelefone.setText(null);
         cbxUF.setSelectedIndex(-1);
-        
+
+        txtTaxaComissao.setEnabled(false);
+
+        txtSalarioBase.setEnabled(false);
         //desativa o txtCPF
-            txtCpf.setEnabled(true);
-            
-            txtNome.setEnabled(false);
-            
-            txtEndereco.setEnabled(false);
-            
-            txtCidade.setEnabled(false);
-            
-            txtCEP.setEnabled(false);
-            
-            txtDDD.setEnabled(false);
-            
-            txtTelefone.setEnabled(false);
-            
-            
-            
-            cbxUF.setEnabled(false);
+        txtCpf.setEnabled(true);
+
+        txtNome.setEnabled(false);
+
+        txtEndereco.setEnabled(false);
+
+        txtCidade.setEnabled(false);
+
+        txtCEP.setEnabled(false);
+
+        txtDDD.setEnabled(false);
+
+        txtTelefone.setEnabled(false);
+
+        cbxUF.setEnabled(false);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -539,13 +539,13 @@ public class GuiVendedor extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     //criação do ponteiro auxiliar
-    private ArrayList <Pessoa> pes;
+    private ArrayList<Pessoa> pes;
 
     //essa variavel guarda o index 
     private int index = 0;
-    
+
     //necessário para UF 
     ArrayList<String> ufArray = new ArrayList<>(Arrays.asList(
-                "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG",
-                "PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"));
+            "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
+            "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"));
 }

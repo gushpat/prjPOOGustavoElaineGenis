@@ -3,11 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 //valores para o txtUF: AC,AL,AP,AM,BA,CE,DF,ES,GO,MA,MT,MS,MG,PA,PB,PR,PE,PI,RJ,RN,RS,RO,RR,SC,SP,SE,TO
-
 package fatec.poo.view;
-
 
 import fatec.poo.model.Cliente;
 import fatec.poo.model.Pessoa;
@@ -23,11 +20,11 @@ public class GuiCliente extends javax.swing.JFrame {
     /**
      * Creates new form GuiCliente
      */
-    public GuiCliente(ArrayList <Pessoa> p) {
-        
+    public GuiCliente(ArrayList<Pessoa> p) {
+
         //atribui o parametro recebido no ponteiro auxiliar criado abaixo
         pes = p;
-        
+
         initComponents();
     }
 
@@ -64,6 +61,7 @@ public class GuiCliente extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         lblLimiteDisponivel = new javax.swing.JLabel();
+        txtCpfTest = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Cliente");
@@ -156,6 +154,8 @@ public class GuiCliente extends javax.swing.JFrame {
 
         lblLimiteDisponivel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
+        txtCpfTest.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,6 +174,8 @@ public class GuiCliente extends javax.swing.JFrame {
                                     .addComponent(txtNome)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(128, 128, 128)
+                                        .addComponent(txtCpfTest, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel5)
@@ -227,7 +229,8 @@ public class GuiCliente extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCpfTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -272,38 +275,38 @@ public class GuiCliente extends javax.swing.JFrame {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         //fecha a janela Cadastro de Clientes
-        this.dispose();        
+        this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        
+
         //consultar cpf
+        //variavel cpf = texto do objeto txtCpf
         String cpf = txtCpf.getText();
-        
+        //variavel cpfFound -> Usada na hora da consulta
         boolean cpfFound = false;
-        
-        for (int i = 0; i < pes.size(); i++)
-        {
-            //obtem o valor do atributo codigo da classe produto, a converte e integer e a compara com o id fornecido pelo usuário
-          if (pes.get(i).getCpf() == cpf)
-          {
-              //encontrou CPF
-              cpfFound = true; 
-              //atribui valor de i ao index
-              index = i;
-              //não é mais necessário executar o FOR
-              break;
-          
-          }
-        
+
+        //percorre todo o vetor pes
+        for (int i = 0; i < pes.size(); i++) {
+            //se o conteudo do vetor pes no indice correspondente a i for igual ao conteudo de cpf  
+            if (cpf.equals(pes.get(i).getCpf())) {
+                //encontrou CPF
+                cpfFound = true;
+                //atribui valor de i ao index
+                index = i;
+                //não é mais necessário executar o FOR
+                break;
+
+            }
+
         }
         //fazer as alterações na UI
-        
-        if (cpfFound)
-        {
-            
-            //usando o typecast PESSOA => CLIENTE
-            Cliente cli = (Cliente)pes.get(index);
+        //Se CPF foi encontrado, faça o seguinte:
+        if (cpfFound) {
+
+            //usando o typecast PESSOA -> CLIENTE
+            //assim é possivel acessar os métodos da classe cliente
+            Cliente cli = (Cliente) pes.get(index);
 
             txtNome.setText(cli.getNome());
             txtEndereco.setText(cli.getEndereco());
@@ -311,93 +314,82 @@ public class GuiCliente extends javax.swing.JFrame {
             txtDDD.setText(cli.getDdd());
             txtCEP.setText(cli.getCep());
             txtTelefone.setText(cli.getTelefone());
-            
+
             //isso aqui vai ser um pouquinho mais chatinho de mexer
             //mas vou usar uma função pra me ajudar com isso
             cbxUF.setSelectedIndex(ufArray.indexOf(cli.getUf()));
-            
-            
-            //usar o typecast nessa galera
-            //ainda não está funcionando como deveria :(
+
+            //métodos de Cliente
             txtLimiteCredito.setText(String.valueOf(cli.getLimiteCred()));
             lblLimiteDisponivel.setText(String.valueOf(cli.getLimiteDisp()));
-            
-            //
-            
-            //desativa botão de consulta
-            btnConsultar.setEnabled(false); 
-            
-            //ativa o botão de alterar
-            btnAlterar.setEnabled(true);
-            
-            //ativa o botão de excluir
-            btnExcluir.setEnabled(true); 
-            
-            //desativa o txtCPF
-            txtCpf.setEnabled(false);
-            
-            txtNome.setEnabled(true);
-            
-            txtEndereco.setEnabled(true);
-            
-            txtCidade.setEnabled(true);
-            
-            txtCEP.setEnabled(true);
-            
-            txtDDD.setEnabled(true);
-            
-            txtTelefone.setEnabled(true);
-            
-            txtLimiteCredito.setEnabled(true);
-            
-            lblLimiteDisponivel.setEnabled(true);
-            
-            cbxUF.setEnabled(true);
-            
-            
-            
-        }
-        else
-        {
+
             //desativa botão de consulta
             btnConsultar.setEnabled(false);
-            
-            //ativa o botão de inserção
-            btnIncluir.setEnabled(true); 
-            
-            
+
+            //ativa o botão de alterar
+            btnAlterar.setEnabled(true);
+
+            //ativa o botão de excluir
+            btnExcluir.setEnabled(true);
+
             //desativa o txtCPF
             txtCpf.setEnabled(false);
-            
+            //ativa o campo de nome
             txtNome.setEnabled(true);
-            
+            //ativa o campo de endereço
             txtEndereco.setEnabled(true);
-            
+            //ativa o campo de cidade
             txtCidade.setEnabled(true);
-            
+            //ativa o campo de CEP
             txtCEP.setEnabled(true);
-            
+            //ativa o campo de DDD
             txtDDD.setEnabled(true);
-            
+            //ativa o campo de Telefone
             txtTelefone.setEnabled(true);
-            
+            //ativa o campo de Limite de Credito
             txtLimiteCredito.setEnabled(true);
-            
+
+            //lblLimiteDisponivel.setEnabled(true);
+            cbxUF.setEnabled(true);
+
+        } else {
+            //desativa botão de consulta
+            btnConsultar.setEnabled(false);
+
+            //ativa o botão de inserção
+            btnIncluir.setEnabled(true);
+
+            //desativa o txtCPF
+            txtCpf.setEnabled(false);
+
+            txtNome.setEnabled(true);
+
+            txtEndereco.setEnabled(true);
+
+            txtCidade.setEnabled(true);
+
+            txtCEP.setEnabled(true);
+
+            txtDDD.setEnabled(true);
+
+            txtTelefone.setEnabled(true);
+
+            txtLimiteCredito.setEnabled(true);
+
             cbxUF.setEnabled(true);
         }
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-        
+
         String cpf = txtCpf.getText();
+
         Double limiteCredito = Double.parseDouble(txtLimiteCredito.getText());
         String nome = txtNome.getText();
-        
+
+        //criação de um objeto da classe cliente
         //limite credito, cpf, nome
         Cliente cli = new Cliente(limiteCredito, cpf, nome);
 
@@ -406,22 +398,25 @@ public class GuiCliente extends javax.swing.JFrame {
         cli.setDdd(txtDDD.getText());
         cli.setEndereco(txtEndereco.getText());
         cli.setTelefone(txtTelefone.getText());
-        
+
         cli.setUf(ufArray.get(cbxUF.getSelectedIndex()));
-        
-        //teste
+
+        //adionamos o objeto cli no vetor pes
+        //lembrando que pes está apontando para cadCliVend
+        //ou seja
+        //o comando abaixo é a mesma coisa que: cadCliVend.add(cli)
         pes.add(cli);
-        
+
         returnFormToSearchState();
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-        
+
         String cpf = txtCpf.getText();
         Double limiteCredito = Double.parseDouble(txtLimiteCredito.getText());
         String nome = txtNome.getText();
-        
+
         //limite credito, cpf, nome
         Cliente cli = new Cliente(limiteCredito, cpf, nome);
 
@@ -430,21 +425,21 @@ public class GuiCliente extends javax.swing.JFrame {
         cli.setDdd(txtDDD.getText());
         cli.setEndereco(txtEndereco.getText());
         cli.setTelefone(txtTelefone.getText());
-        
+
+        //compara a string e pega seu index no arraylist ufArray para passar com parametro
         cli.setUf(ufArray.get(cbxUF.getSelectedIndex()));
-        
+
         //pra finalizar utilizamos o arraylist.set(index, valor)
         pes.set(index, cli);
-        
+
         returnFormToSearchState();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
-        
+
         pes.remove(index);
-        
-        returnFormToSearchState();      
+
+        returnFormToSearchState();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void returnFormToSearchState() //Função criada exclusivamente para retornar o form ao estado inicial
@@ -453,13 +448,14 @@ public class GuiCliente extends javax.swing.JFrame {
         btnAlterar.setEnabled(false);
         //desativa botão excluir
         btnExcluir.setEnabled(false);
-        
+
         //ativa botão de consulta
         btnConsultar.setEnabled(true);
-            
+
         //desativa o botão de inserção
         btnIncluir.setEnabled(false);
-        
+
+        //Deixa o povo todo null
         txtCpf.setText(null);
         txtNome.setText(null);
         txtEndereco.setText(null);
@@ -469,29 +465,29 @@ public class GuiCliente extends javax.swing.JFrame {
         lblLimiteDisponivel.setText(null);
         txtCEP.setText(null);
         txtTelefone.setText(null);
+        //muda o index do cbxUF para -1 -> Não aparece nada no lugar
         cbxUF.setSelectedIndex(-1);
-        
+
         //desativa o txtCPF
-            txtCpf.setEnabled(true);
-            
-            txtNome.setEnabled(false);
-            
-            txtEndereco.setEnabled(false);
-            
-            txtCidade.setEnabled(false);
-            
-            txtCEP.setEnabled(false);
-            
-            txtDDD.setEnabled(false);
-            
-            txtTelefone.setEnabled(false);
-            
-            txtLimiteCredito.setEnabled(false);
-            
-            cbxUF.setEnabled(false);
+        txtCpf.setEnabled(true);
+
+        txtNome.setEnabled(false);
+
+        txtEndereco.setEnabled(false);
+
+        txtCidade.setEnabled(false);
+
+        txtCEP.setEnabled(false);
+
+        txtDDD.setEnabled(false);
+
+        txtTelefone.setEnabled(false);
+
+        txtLimiteCredito.setEnabled(false);
+
+        cbxUF.setEnabled(false);
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -547,6 +543,7 @@ public class GuiCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtCEP;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JFormattedTextField txtCpf;
+    private javax.swing.JTextField txtCpfTest;
     private javax.swing.JTextField txtDDD;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtLimiteCredito;
@@ -554,15 +551,14 @@ public class GuiCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 
-
     //criação do ponteiro auxiliar
-    private ArrayList <Pessoa> pes;
-    
+    private ArrayList<Pessoa> pes;
+
     //essa variavel guarda o index 
     private int index = 0;
-    
+
     //necessário para UF 
     ArrayList<String> ufArray = new ArrayList<>(Arrays.asList(
-                "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG",
-                "PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"));
+            "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
+            "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"));
 }

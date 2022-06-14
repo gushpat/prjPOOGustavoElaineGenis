@@ -5,6 +5,7 @@
  */
 package fatec.poo.view;
 
+import fatec.poo.model.Cliente;
 import fatec.poo.model.Pessoa;
 import fatec.poo.model.Produto;
 import java.util.ArrayList;
@@ -109,6 +110,10 @@ public class GuiMenu extends javax.swing.JFrame {
     private void mitClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitClienteActionPerformed
         
         //cria uma instancia da classe guicliente e a torna visível
+        //passamos como parametro o ponteiro do arraylist cadCliVend
+        //ou seja
+        //quando fazemos alguma alteração no array presente dentro da classe
+        //GuiCliente, estamos alterando diretamente o arraylist cadCliVend
         new GuiCliente(cadCliVend).setVisible(true);        
     }//GEN-LAST:event_mitClienteActionPerformed
 
@@ -179,6 +184,7 @@ public class GuiMenu extends javax.swing.JFrame {
     //criação dos arraylist da classe pessoa e da classe produto
     //os objetos instanciados deverão ficar salvos nos arrays abaixo
     private ArrayList<Pessoa> cadCliVend = new ArrayList<Pessoa>();
+    
     private ArrayList<Produto> cadProd = new ArrayList<Produto>();
     
 
