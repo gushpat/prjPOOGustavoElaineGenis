@@ -797,11 +797,16 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
 
+        //utilizaremos a função remove do arraylist juntamente com a variável index
+        pedido.remove(indexPed);
+
+        //****Como a exclusão já foi realizada, então voltaremos o form ao seu estado inicial****
+        returnFormToSearchState();
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        //fecha a janela Cadastro de Clientes
+        //fecha a janela Emitir Pedidos
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
@@ -832,11 +837,22 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         txtCpfVendedor.setEnabled(false);
         txtCpfVendedor.setText(null);
         btnConsultarDadosVendedor.setEnabled(false);
-        btnConsultarDadosVendedor.setText(null);
+       
         txtCodigoProduto.setText(null);
         txtCodigoProduto.setEnabled(false);
         btnConsultarCodigoProduto.setEnabled(false);
-        btnConsultarCodigoProduto.setText(null);
+        
+        btnAddItem.setEnabled(false);
+        btnRemoveItem.setEnabled(false);
+        
+        txtCodigoProduto.setEnabled(false);
+        txtCodigoProduto.setText(null);
+        
+        btnConsultarCodigoProduto.setEnabled(false);
+        lblDescProduto.setText(null);
+        
+        txtQtdeVendida.setText(null);
+        txtQtdeVendida.setEnabled(false);
         
         
         
