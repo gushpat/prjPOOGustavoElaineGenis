@@ -5,7 +5,7 @@
  */
 package fatec.poo.view;
 
-import fatec.poo.model.Cliente;
+import fatec.poo.model.Pedido;
 import fatec.poo.model.Pessoa;
 import fatec.poo.model.Produto;
 import java.util.ArrayList;
@@ -87,6 +87,11 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenu2.setText("Pedido");
 
         mitEmitirPedido.setText("Emitir Pedido");
+        mitEmitirPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitEmitirPedidoActionPerformed(evt);
+            }
+        });
         jMenu2.add(mitEmitirPedido);
 
         jMenuBar1.add(jMenu2);
@@ -132,6 +137,11 @@ public class GuiMenu extends javax.swing.JFrame {
         //parametro = arraylist criado abaixo
         new GuiProduto(cadProd).setVisible(true);
     }//GEN-LAST:event_mitProdutosActionPerformed
+
+    private void mitEmitirPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitEmitirPedidoActionPerformed
+       
+        new GuiEmitirPedido(emitPed, cadCliVend, cadProd).setVisible(true);
+    }//GEN-LAST:event_mitEmitirPedidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,6 +196,8 @@ public class GuiMenu extends javax.swing.JFrame {
     private ArrayList<Pessoa> cadCliVend = new ArrayList<Pessoa>();
     
     private ArrayList<Produto> cadProd = new ArrayList<Produto>();
+    
+    private ArrayList<Pedido> emitPed = new ArrayList<Pedido>();
     
 
 }

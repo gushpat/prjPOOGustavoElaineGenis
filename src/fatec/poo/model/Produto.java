@@ -1,6 +1,8 @@
 
 package fatec.poo.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author gusta
@@ -16,7 +18,7 @@ public class Produto {
     private double estoqueMinimo; 
     
     //objeto da classe itempedido
-    private ItemPedido itemPedido; //multiplicidade 1
+    private ArrayList<ItemPedido> itemPedido; //multiplicidade 1*
     
     
     //metodo construtor tem como parametros de entrada codigo e descricao;
@@ -48,6 +50,7 @@ public class Produto {
         this.estoqueMinimo = estoqueMinimo;
     }
     
+    
     //get Descricao, quantidade de estoque, unidade medida, preco, estoque minimo
 
     public String getDescricao() {
@@ -72,13 +75,15 @@ public class Produto {
     
     //get and set item pedido
 
-    public ItemPedido getItemPedido() {
+    public ArrayList<ItemPedido> getItemPedido() {
         return itemPedido;
     }
 
-    public void setItemPedido(ItemPedido itemPedido) {
+    public void setItemPedido(ArrayList<ItemPedido> itemPedido) {
         this.itemPedido = itemPedido;
     }
+
+   
     
     
     //subtrai estoque
