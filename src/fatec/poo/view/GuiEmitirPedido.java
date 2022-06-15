@@ -526,6 +526,53 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
             //obtenha os valores no array Pedido e os exiba
             pedTemp = pedido.get(indexPed);
             //**********************************
+            
+        
+        txtCpfVendedor.setText(pedTemp.getVendedor().getCpf());
+        txtCpfCliente.setText(pedTemp.getCliente().getCpf());
+        
+        lblNomeCliente.setText(pedTemp.getCliente().getNome());
+        lblNomeVendedor.setText(pedTemp.getVendedor().getNome());
+       
+        txtCodigoProduto.setText(null);
+        txtCodigoProduto.setEnabled(false);
+        btnConsultarCodigoProduto.setEnabled(false);
+        
+        btnAddItem.setEnabled(false);
+        btnRemoveItem.setEnabled(false);
+
+        lblDescProduto.setText(null);
+        
+        txtQtdeVendida.setText(null);
+        txtQtdeVendida.setEnabled(true);
+        
+        txtDataPedido.setText(pedTemp.getDataEmissao());
+        
+        
+        itemPedido = pedTemp.getItensPedidos();
+        
+        for (int i = 0; i < itemPedido.size(); i++)
+        {
+            String linha[] = {String.valueOf(itemPedido.get(i).getSequencia()),
+                        String.valueOf(itemPedido.get(i).getProduto().getDescricao()),
+                        String.valueOf(itemPedido.get(i).getProduto().getPreco()),
+                        String.valueOf(itemPedido.get(i).getQtdeVendida()),
+                        String.valueOf(itemPedido.get(i).getProduto().getPreco() * itemPedido.get(i).getQtdeVendida())
+
+                    };
+                    
+                    valorTotalPedido += itemPedido.get(i).getProduto().getPreco() * itemPedido.get(i).getQtdeVendida();
+                    qtdeItensPedidos += itemPedido.get(i).getQtdeVendida();
+                    
+                    modTblPed.addRow(linha);
+        
+        
+        }
+        
+        //exibe a galera
+                    lblQtdeItensPedidos.setText(String.valueOf(qtdeItensPedidos));
+                    lblValorPedido.setText(String.valueOf(valorTotalPedido));
+            
 
             //**********************************
         } else //preparar UI para inserção
@@ -535,14 +582,11 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         {
             btnConsultarNumeroPedido.setEnabled(false);
         }
+        
         txtDataPedido.setEnabled(true);
         cbxPagamento.setEnabled(true);
 
         btnConsultarDadosCliente.setEnabled(true);
-
-        {
-
-        }
 
 
     }//GEN-LAST:event_btnConsultarNumeroPedidoActionPerformed
@@ -727,9 +771,14 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                         String.valueOf(subtotal)
 
                     };
+                    
+                    
 
                     modTblPed.addRow(linha);
 
+                    //incrementa numero da sequencia
+                    seq++;
+                    
                     //add quantidade de itens no total
                     qtdeItensPedidos += qtdeVendida;
 
@@ -776,6 +825,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         } else {
             modTblPed.removeRow(tblPedido.getSelectedRow());
+            
         }
     }//GEN-LAST:event_btnRemoveItemActionPerformed
 
@@ -845,17 +895,34 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         btnAddItem.setEnabled(false);
         btnRemoveItem.setEnabled(false);
         
-        txtCodigoProduto.setEnabled(false);
-        txtCodigoProduto.setText(null);
+        txtCpfCliente.setEnabled(false);
+        txtCpfCliente.setText(null);
+        btnConsultarDadosCliente.setEnabled(false);
         
-        btnConsultarCodigoProduto.setEnabled(false);
         lblDescProduto.setText(null);
         
         txtQtdeVendida.setText(null);
         txtQtdeVendida.setEnabled(false);
         
+        int x = modTblPed.getRowCount();
+        
+        for (int i = 0; i < x; i++)
+        {
+        modTblPed.removeRow(i);
+        }
+        
+        txtDataPedido.setText(null);
+        txtDataPedido.setEnabled(true);
+        
+        lblValorPedido.setText(null);
+        lblQtdeItensPedidos.setText(null);
         
         
+        valorTotalPedido = 0;
+
+        qtdeItensPedidos = 0;
+
+        seq = 0;
     }
     /**
      * @param args the command line arguments
@@ -937,6 +1004,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
 
     private ArrayList<Pessoa> pessoa;
     private ArrayList<Produto> produto;
+    private ArrayList<ItemPedido> itemPedido;
 
     //essa variavel guarda o index 
     private int indexPed = 0;
