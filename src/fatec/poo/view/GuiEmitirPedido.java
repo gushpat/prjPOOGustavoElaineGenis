@@ -781,9 +781,13 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
 
+        boolean b = (cbxPagamento.getSelectedIndex() == 0 ? true : false);
+        
+        pedTemp.setFormaPagto(b);
         //Salva o pedido no array dos pedidos
         pedido.add(pedTemp);
 
+        returnFormToSearchState();
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -823,6 +827,20 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtDataPedidoKeyTyped
 
+    private void returnFormToSearchState() //Função criada exclusivamente para retornar o form ao estado inicial
+    {
+        txtCpfVendedor.setEnabled(false);
+        txtCpfVendedor.setText(null);
+        btnConsultarDadosVendedor.setEnabled(false);
+        btnConsultarDadosVendedor.setText(null);
+        txtCodigoProduto.setText(null);
+        txtCodigoProduto.setEnabled(false);
+        btnConsultarCodigoProduto.setEnabled(false);
+        btnConsultarCodigoProduto.setText(null);
+        
+        
+        
+    }
     /**
      * @param args the command line arguments
      */
