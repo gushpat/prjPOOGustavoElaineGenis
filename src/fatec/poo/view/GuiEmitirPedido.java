@@ -906,7 +906,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         
         int x = modTblPed.getRowCount();
         
-        for (int i = 0; i < x; i++)
+        for (int i = 0; i <= x; i++)
         {
         modTblPed.removeRow(i);
         }
