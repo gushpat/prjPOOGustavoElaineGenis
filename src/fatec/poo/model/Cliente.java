@@ -13,6 +13,11 @@ public class Cliente extends Pessoa{
     private double limiteCred;
     private double limiteDisp;
     
+    //Atributo tipo
+    //0 = comum
+    //1 = especial
+    private int tipo;
+    
     //Array de objetos da classe pedidos
     private ArrayList<Pedido> pedidos; //multiplicidade 1..*
 
@@ -56,6 +61,16 @@ public class Cliente extends Pessoa{
       this.limiteDisp -= d;
     }
     
+    
+    //get e set para tipo
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
     
     
     

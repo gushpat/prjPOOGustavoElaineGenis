@@ -61,6 +61,8 @@ public class GuiCliente extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         lblLimiteDisponivel = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        cbxTipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Cliente");
@@ -153,6 +155,11 @@ public class GuiCliente extends javax.swing.JFrame {
 
         lblLimiteDisponivel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
+        jLabel10.setText("Tipo");
+
+        cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comum", "Especial" }));
+        cbxTipo.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,7 +178,10 @@ public class GuiCliente extends javax.swing.JFrame {
                                     .addComponent(txtNome)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -224,7 +234,9 @@ public class GuiCliente extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -312,10 +324,15 @@ public class GuiCliente extends javax.swing.JFrame {
             //isso aqui vai ser um pouquinho mais chatinho de mexer
             //mas vou usar uma função pra me ajudar com isso
             cbxUF.setSelectedIndex(ufArray.indexOf(cli.getUf()));
+            
+            
 
             //métodos de Cliente
             txtLimiteCredito.setText(String.valueOf(cli.getLimiteCred()));
             lblLimiteDisponivel.setText(String.valueOf(cli.getLimiteDisp()));
+            
+            //OBTEM VALOR DE TIPO
+            cbxTipo.setSelectedIndex(cli.getTipo());
 
             //desativa botão de consulta
             btnConsultar.setEnabled(false);
@@ -345,6 +362,7 @@ public class GuiCliente extends javax.swing.JFrame {
 
             //lblLimiteDisponivel.setEnabled(true);
             cbxUF.setEnabled(true);
+            cbxTipo.setEnabled(true);
 
         } else {
             //desativa botão de consulta
@@ -371,6 +389,8 @@ public class GuiCliente extends javax.swing.JFrame {
             txtLimiteCredito.setEnabled(true);
 
             cbxUF.setEnabled(true);
+            
+            cbxTipo.setEnabled(true);
         }
 
 
@@ -394,6 +414,9 @@ public class GuiCliente extends javax.swing.JFrame {
         cli.setTelefone(txtTelefone.getText());
 
         cli.setUf(ufArray.get(cbxUF.getSelectedIndex()));
+        
+        //obtem valor de cbx tipo
+        cli.setTipo(cbxTipo.getSelectedIndex());
 
         //adionamos o objeto cli no vetor pes
         //lembrando que pes está apontando para cadCliVend
@@ -423,6 +446,9 @@ public class GuiCliente extends javax.swing.JFrame {
         //compara a string e pega seu index no arraylist ufArray para passar com parametro
         cli.setUf(ufArray.get(cbxUF.getSelectedIndex()));
 
+        //obtem valor de cbx tipo
+        cli.setTipo(cbxTipo.getSelectedIndex());
+        
         //pra finalizar utilizamos o arraylist.set(index, valor)
         pes.set(index, cli);
 
@@ -480,6 +506,9 @@ public class GuiCliente extends javax.swing.JFrame {
         txtLimiteCredito.setEnabled(false);
 
         cbxUF.setEnabled(false);
+        
+        cbxTipo.setEnabled(false);
+        cbxTipo.setSelectedIndex(0);
     }
 
     /**
@@ -523,8 +552,10 @@ public class GuiCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnIncluir;
     private javax.swing.JButton btnSair;
+    private javax.swing.JComboBox<String> cbxTipo;
     private javax.swing.JComboBox<String> cbxUF;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
